@@ -2,7 +2,7 @@ FROM python:2.7.12
 MAINTAINER = Di Xu <stephenhsu90@gmail.com>
 
 EXPOSE 5000 35357
-ENV KEYSTONE_VERSION 9.1.0
+ENV KEYSTONE_VERSION 14.1.0
 ENV KEYSTONE_ADMIN_PASSWORD passw0rd
 ENV KEYSTONE_DB_ROOT_PASSWD passw0rd
 ENV KEYSTONE_DB_PASSWD passw0rd
@@ -29,7 +29,7 @@ RUN sed -i.bak "s|keystonemiddleware!=4.1.0,>=4.0.0|keystonemiddleware!=4.1.0,>=
 RUN pip install -r requirements.txt \
     && PBR_VERSION=${KEYSTONE_VERSION} python setup.py install
 
-RUN pip install "osc-lib<=1.1.0" "python-openstackclient<=3.3.0" PyMySql python-memcached \
+RUN pip install "osc-lib<=1.1.0" "python-openstackclient>=3.14.0" PyMySql python-memcached \
     python-ldap ldappool
 RUN mkdir /etc/keystone
 RUN cp -r ./etc/* /etc/keystone/

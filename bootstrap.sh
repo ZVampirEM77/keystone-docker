@@ -66,6 +66,9 @@ sed -i "s/KEYSTONE_DB_HOST/$KEYSTONE_DB_HOST/g" /etc/keystone/keystone.conf
 # Populate keystone database
 su -s /bin/sh -c 'keystone-manage db_sync' keystone
 
+keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+
 # Bootstrap keystone
 keystone-manage bootstrap --bootstrap-username admin \
 		--bootstrap-password $KEYSTONE_ADMIN_PASSWORD \
