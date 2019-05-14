@@ -10,6 +10,8 @@ ENV KEYSTONE_DB_PASSWD passw0rd
 LABEL version="$KEYSTONE_VERSION"
 LABEL description="Openstack Keystone Docker Image Supporting HTTP/HTTPS"
 
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+
 RUN apt-get -y update \
     && apt-get install -y apache2 libapache2-mod-wsgi git memcached\
         libffi-dev python-dev libssl-dev mysql-client libldap2-dev libsasl2-dev\
