@@ -59,6 +59,20 @@ Just run
 $ docker run -d -p 5000:5000 -p 35357:35357 --name my_keystone stephenhsu/keystone
 ```
 
+Note:
+
+If we need to promise the keystone instance can be accessed by other service,
+we should specify the HOSTNAME environment variable during executing the 
+"docker run"
+
+e.g.
+
+```
+docker run -d -p 5000:5000 -p 35357:35357 -e HOSTNAME=keystone --name my_keystone stephenhsu/keystone
+```
+
+Otherwise, the keystone docker container will use the host name which is generated randomly
+
 Now you can access <http://localhost:5000> and  <http://localhost:35357>.
 
 ## Login into Keystone container
